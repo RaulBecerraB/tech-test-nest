@@ -1,29 +1,8 @@
-// exercise-2/callWithRetry.ts
+import type { AzureApiError } from './interfaces/AzureApiError.js';
+import type { RetryOptions } from './interfaces/RetryOptions.js';
+import type { AttemptDetail } from './interfaces/AttemptDetail.js';
 
-export interface AzureApiError {
-  statusCode: number;
-  message: string;
-  retryAfter?: number;
-}
-
-export interface RetryOptions {
-
-  maxAttempts?: number;
-  baseDelayMs?: number;
-  retryStatusCodes?: number[];
-
-  logger?: {
-    log?: (...args: any[]) => void;
-    warn?: (...args: any[]) => void;
-    error?: (...args: any[]) => void;
-  };
-}
-
-interface AttemptDetail {
-  attempt: number;
-  statusCode?: number | undefined;
-  message: string;
-}
+export type { AzureApiError, RetryOptions };
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
